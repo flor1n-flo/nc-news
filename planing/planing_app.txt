@@ -1,0 +1,55 @@
+OVERIVIEW:
+
+A react app that interfaces with a backend news API that can:
+- view a list of articles
+- topics filtering
+- view individual articles with comments
+- article votes
+- comments on post
+- delete the coments
+
+ENDPOINTS AVAILABLE:
+
+- GET /api/topics
+- GET /api/articles
+- GET /api/articles/:article_id
+- GET /api/users
+- POST /api/articles/:article_id/comments
+- PATCH /api/articles/:article_id
+- DELETE /api/comments/:comments_id
+
+PLANING REACT ROUTES:
+
+/ home page            -  a list of all articles
+/articles/:article_id  -  single article page with comments
+/topics/:topic         -  a list of articles filtered by topics
+/users                 -  a list of users
+
+WIREFRAMES:
+
+Home Page(/):
+	-header(logo+ navigation Bar)
+	-a menu/ a drop down menu for mobiles
+	-a list of articles cards( title, topic, author, votes, coment count)
+Article Page(/articles/:id)
+	- title
+	- author and post date
+	- body
+	- votes (buttons for thumbs up/thumbs down)
+	- comments form
+	- comments list
+Topics(/topics/:topic)
+	- topic filtered
+
+COMPONENT TREE:
+
+	 header
+<App> => NavBar
+	 Routes => Home page
+		   articlePage
+		   topicPage
+
+other components:
+- coment list
+- coment form
+- votes buttons
