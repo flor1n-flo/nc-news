@@ -6,14 +6,14 @@ function SingleArticle () {
     const {article_id} = useParams();
 
     //state to hold the article data
-    const [article, SetArticle] = useState({});
+    const [article, setArticle] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
     //fetching the articles when the component is loading
 
     useEffect(() => {
-        fetch(`https:project29-05.onrender.com/api/articles/${article_id}`)
+        fetch(`https://project29-05.onrender.com/api/articles/${article_id}`)
         .then((res) => {
             if (!res.ok) {
                 throw new Error("Failed to fetch article");

@@ -1,19 +1,23 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 function ArticleCard({ article }) {
-    const { title, author, topic, created_at, votes, comment_count, article_img_url } = article;
+    const { article_id, title, author, topic, created_at, votes, comment_count, article_img_url } = article;
 
     const formattedDate = new Date(created_at).toLocaleDateString('en-GB');
 
     return (
         <div className="article-card">
-            <img src={article_img_url} alt={title} className="article-image" />
-            <h2>{title}</h2>
-            <p>Author: {author}</p>
-            <p>Topic: {topic}</p>
-            <p>Date: {formattedDate}</p>
-            <p>Votes: {votes}</p>
-            <p>Comments: {comment_count}</p>
+            <Link to={`/articles/${article_id}`} style={{textDecoration: "none", color: "inherit" }}>
+                <img src={article_img_url} alt="article" width="400" />
+                <h2>{title}</h2>
+                <p><strong>Topic:</strong> {topic}</p>
+                <p><strong>Author:</strong> {author}</p>
+                <p><strong>Votes:</strong> {votes}</p>
+                <p><strong>Comments:</strong> {comment_count}</p>
+                <p><strong>Date:</strong> {new Date(created_at).toLocaleDateString()}</p>
+            </Link>
         </div>
     );
 }
