@@ -40,3 +40,33 @@
 .read-the-docs {
   color: #888;
 }
+
+.articles-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.article-card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 300px;
+  box-shadow: 0 0 5px rgba(red, green, blue, alpha);
+}
+
+.article-image {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.single-article {
+  border: 1px solid#ccc;
+  padding: 20px;
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+}
