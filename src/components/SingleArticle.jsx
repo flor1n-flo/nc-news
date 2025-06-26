@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import CommentCard from "./CommentCard";
 
 function SingleArticle () {
     //get the articels_id from url
@@ -10,8 +11,12 @@ function SingleArticle () {
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    //fetching the articles when the component is loading
+    //state to hold the comments
+    const [comments, setComments] = useState([]);
+    const [commentsLoading, setCommentsLoading] = useState(true);
 
+
+    //fetching the articles when the component is loading
     useEffect(() => {
         fetch(`https://project29-05.onrender.com/api/articles/${article_id}`)
         .then((res) => {
@@ -29,6 +34,23 @@ function SingleArticle () {
             setIsLoading(false);
         });
     }, [article_id]);
+
+    //fetch comments data
+    useEffect(() => {
+        fetch(`https://project29-05.onrender.com/api/articles/${article_id}/comments`)
+        .then((res) => {
+            if (!res.ok) throw new Error("Failed to fetch comments");
+            return res.json()
+        })
+        .then((data) => {
+            setComments(data.comments);
+            setCommentsLoading(false);
+        })
+        .catch((err) => {
+            console.log("Comments error", err);
+            setCommentsLoading(false);
+        });
+    }, [article_id])
 
     //showing loading state
     if (isLoading) {
@@ -63,6 +85,15 @@ function SingleArticle () {
             <p><strong> Votes: </strong> {votes} </p>
             <p><strong> Comments: </strong> {comment_count} </p>
             <p>{body}</p>
+  
+
+            <section className="comments-section">
+                <h3>Comments</h3>
+                {commentsLoading ? (<p>Loading comments...</p>) : comments.length === 0 ? (<p>No coment yet.</p>) : (comments.map((comment) =>
+                    (<commentCard key={comment.comment_id} comment={comment}/>))
+                )}
+            </section>
+            
         </article>
     );
 }
