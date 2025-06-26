@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import CommentCard from "./CommentCard";
+import CommentForm from "./CommentForm";
 
 function SingleArticle () {
     //get the articels_id from url
@@ -18,6 +19,11 @@ function SingleArticle () {
     //state for vote handling
     const [voteChange, setVoteChange] = useState(0);
     const [voteError, setVoteError] = useState(null);
+
+    //add a new comment 
+    const handleCommentPosted = (newComment) => {
+        setComments((prevComments) => [newComment, ...prevComments]);
+    };
 
 
     //fetching the articles when the component is loading
@@ -38,6 +44,7 @@ function SingleArticle () {
             setIsLoading(false);
         });
     }, [article_id]);
+
 
     //fetch comments data
     useEffect(() => {
@@ -124,6 +131,9 @@ function SingleArticle () {
 
             {/*Vote fails, display error message*/}
             {voteError && <p style={{color: "red"}} >{voteError}</p>}
+
+            {/*Comment Form*/}
+            <CommentForm article_id = {article_id} onCommentPosted = {handleCommentPosted} />
   
 
             <section className="comments-section">
