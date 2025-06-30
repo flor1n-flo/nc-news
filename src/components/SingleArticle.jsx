@@ -20,6 +20,12 @@ function SingleArticle () {
     const [voteChange, setVoteChange] = useState(0);
     const [voteError, setVoteError] = useState(null);
 
+    //add a current user and delete handler
+    const currentUser = "";
+    const handleCommentDelete = (comment_id) => {
+        setComments((prevComments) => prevComments.filter((comment) => comment.comment_id !== comment_id));
+    };
+
     //add a new comment 
     const handleCommentPosted = (newComment) => {
         setComments((prevComments) => [newComment, ...prevComments]);
